@@ -1,0 +1,20 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraScreenshot : MonoBehaviour
+{
+    [SerializeField]
+    int screenshotSizeMultiply = 1;
+    public void MakeScreenshot()
+    {
+        string path = Application.dataPath + "/Resources/Output/";
+        string name = DateTime.Now.ToString()
+            .Replace('.', '_')
+            .Replace(' ', '_')
+            .Replace(':', '_');
+        string fileType = ".png";
+        ScreenCapture.CaptureScreenshot(path + name + fileType, screenshotSizeMultiply);
+    }
+}

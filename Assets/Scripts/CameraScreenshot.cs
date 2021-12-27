@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class CameraScreenshot : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CameraScreenshot : MonoBehaviour
     public void MakeScreenshot()
     {
         string path = Application.dataPath + "/Resources/Output/";
+        if(!Directory.Exists(path))
+            Directory.CreateDirectory(path);
         string name = DateTime.Now.ToString()
             .Replace('.', '_')
             .Replace(' ', '_')

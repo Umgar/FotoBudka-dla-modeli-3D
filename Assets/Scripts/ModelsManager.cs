@@ -11,11 +11,17 @@ public class ModelsManager : MonoBehaviour
     int modelIndex = 0;
     void Start()
     {
-        DirectoryInfo dir = new DirectoryInfo($"{Application.dataPath}/Resources/Input");
+        string fullpath = $"{Application.dataPath}/Resources/Input";
+        if(Directory.Exists(fullpath))
+        {
+        DirectoryInfo dir = new DirectoryInfo(fullpath);
         FileInfo[] files = dir.GetFiles("*.prefab");
-        this.models = ModelsLoader(files);
+        models = ModelsLoader(files);
         models[0].SetActive(true);
         models[0].transform.SetParent(_target);
+        }
+        else
+            Directory.CreateDirectory(fullpath);
     }
 
     public void NextModel()

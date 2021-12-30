@@ -23,7 +23,7 @@ public class RotateObject : MonoBehaviour
     void Rotate()
     {
         Vector3 newPosition = Input.mousePosition;
-        newPosition = (prevPosition - newPosition) * rotationForce;
+        newPosition = (prevPosition - newPosition).normalized * rotationForce;
         newPosition = new Vector3(-newPosition.y, newPosition.x, 0);
         if(this.transform.childCount == 0) return;
         this.transform.GetChild(0).Rotate(newPosition, Space.World);
